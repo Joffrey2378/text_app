@@ -36,6 +36,17 @@ class _PageState extends State<Page> {
     });
   }
 
+  void _changeTextColor() {
+    setState(() {
+      _fontColor = Color.fromARGB(
+        _random.nextInt(256),
+        _random.nextInt(256),
+        _random.nextInt(256),
+        _random.nextInt(256),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +62,16 @@ class _PageState extends State<Page> {
       body: InkWell(
         onTap: _changeColor,
         child: Center(
-            child: Container(
-              child: Text('Hey there',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: _fontColor,
-                  fontWeight: FontWeight.bold
-                )),
+            child: GestureDetector(
+              onTap: _changeTextColor,
+              child: Container(
+                child: Text('Hey there',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: _fontColor,
+                    fontWeight: FontWeight.bold
+                  )),
+              ),
             ),
         ),
       ),
